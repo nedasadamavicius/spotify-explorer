@@ -7,19 +7,19 @@ If something does not load within the app, it is likely because of that — chec
 
 
 
-## 🚀 Running the Project
+## Running the Project
 
 You can run the project using [Docker Compose (recommended)](#-docker-compose-recommended) or set it up manually using [Python virtual environments](#-python-virtual-environment-manual-setup). Both sections can be read standalone, so you don't need to jump back and forth.
 
 
 
-## 🐳 Docker Compose (recommended)
+## Docker Compose (recommended)
 
 This is the easiest way to run the app for **both development** and **production**.
 
 
 
-### 📦 1. Clone the repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/nedasadamavicius/spotify-explorer.git
@@ -28,7 +28,7 @@ cd spotify-explorer
 
 
 
-### 🔑 2. Define environment variables
+### 2. Define environment variables
 
 From the same **repository root** directory:
 
@@ -52,7 +52,7 @@ For production, set `DEBUG=False`, `ALLOWED_HOSTS=your-domain.com`, and `STATIC_
 
 
 
-#### ℹ️ About environment variables
+#### About environment variables
 
 * **SPOTIFY\_CLIENT\_ID / SPOTIFY\_CLIENT\_SECRET**
   Get these from the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
@@ -66,11 +66,11 @@ For production, set `DEBUG=False`, `ALLOWED_HOSTS=your-domain.com`, and `STATIC_
   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
   ```
 
-  ⚠️ **Keep this key safe and never commit it to version control.**
+  > **Keep this key safe and never commit it to version control.**
 
 
 
-### 🏃 3. Start the app
+### 3. Start the app
 
 From the **repository root**, for development run:
 
@@ -90,7 +90,7 @@ docker compose -f docker-compose.prod.yml up --build -d
 
 
 
-#### 🔄 Common Docker commands
+#### Common Docker commands
 
 Run Django management commands inside the container:
 
@@ -101,13 +101,13 @@ docker compose exec web python manage.py migrate --noinput
 
 
 
-## 🐍 Python Virtual Environment (manual setup)
+## Python Virtual Environment (manual setup)
 
 This is the **legacy setup** for running the app without Docker. Works for **both development** and **production**.
 
 
 
-### 📦 1. Create a virtual environment
+### 1. Create a virtual environment
 
 ```bash
 python -m venv .venv
@@ -115,7 +115,7 @@ python -m venv .venv
 
 
 
-### 🔑 2. Activate the virtual environment
+### 2. Activate the virtual environment
 
 * On **Windows**:
 
@@ -131,7 +131,7 @@ python -m venv .venv
 
 
 
-### 📥 3. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -139,7 +139,7 @@ pip install -r requirements.txt
 
 
 
-### 🔑 4. Define environment variables
+### 4. Define environment variables
 
 From the same **repository root** directory:
 
@@ -163,7 +163,7 @@ For production, set `DEBUG=False`, `ALLOWED_HOSTS=your-domain.com`, and `STATIC_
 
 
 
-#### ℹ️ About environment variables
+#### About environment variables
 
 * **SPOTIFY\_CLIENT\_ID / SPOTIFY\_CLIENT\_SECRET**
   Get these from the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
@@ -177,11 +177,11 @@ For production, set `DEBUG=False`, `ALLOWED_HOSTS=your-domain.com`, and `STATIC_
   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
   ```
 
-  ⚠️ **Keep this key safe and never commit it to version control.**
+  > **Keep this key safe and never commit it to version control.**
 
 
 
-### 🏃 5. Start the app
+### 5. Start the app
 
 Navigate to the Django project root:
 
@@ -207,7 +207,7 @@ gunicorn WebProject.wsgi:application --bind 0.0.0.0:8000 --workers 3
 
 
 
-#### 🔄 Common management commands
+#### Common management commands
 
 Run Django commands manually:
 
@@ -216,7 +216,7 @@ python manage.py collectstatic --noinput
 python manage.py migrate --noinput
 ```
 
-#### ⚙️ Start background services (required for both dev and prod)
+#### Start background services (required for both dev and prod)
 
 This app uses **Redis** and **Celery** for background tasks.
 If you are not using Docker, you need to set them up manually.
@@ -252,11 +252,11 @@ If you are not using Docker, you need to set them up manually.
   celery -A WebProject beat --loglevel=info
   ```
 
-⚠️ To avoid restarting these processes manually on every reboot, configure them with **systemd** or **supervisord**.
+> To avoid restarting these processes manually on every reboot, configure them with **systemd** or **supervisord**.
 
 
 
-## 📝 Notes
+## Notes
 
 * Make sure you have Python 3.12+ installed.
 * For Docker Compose, you need Docker Desktop (Windows/Mac) or Docker Engine (Linux).
